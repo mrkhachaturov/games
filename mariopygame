@@ -20,7 +20,6 @@ font = pygame.font.SysFont('forte', 20)
 canvas = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Mario')
 
-
 class Topscore:
     def __init__(self):
         self.high_score = 0
@@ -30,7 +29,6 @@ class Topscore:
         return self.high_score
 
 topscore = Topscore()
-
 
 class Dragon:
     dragon_velocity = 10
@@ -246,4 +244,22 @@ def game_loop():
 
 
 start_game()
+
+def start_game():
+    canvas.fill(BLACK)
+    start_img = pygame.image.load('start.png')
+    start_img_rect = start_img.get_rect()
+    start_img_rect.center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2)
+    canvas.blit(start_img, start_img_rect)
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+                game_loop()
+        pygame.display.update()
 
